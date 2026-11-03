@@ -1,0 +1,43 @@
+{
+  "ortoPMBN1": {
+    "pohon": 6008,
+    "footprint_ha": 63.49,
+    "kepadatan_per_ha": 94.6,
+    "conf_median": 0.755,
+    "conf_p10": 0.506,
+    "pohon_conf_ge_050": 5424,
+    "box_area_median_m2": 79.8,
+    "raster": "intermediates/new_orto_155/ortoPMBN1_47N.tif",
+    "tile_px": 59060303,
+    "zoom_200m_pohon": 572
+  },
+  "ortoPMBN2": {
+    "pohon": 88,
+    "footprint_ha": 29.22,
+    "kepadatan_per_ha": 3.0,
+    "conf_median": 0.362,
+    "conf_p10": 0.263,
+    "pohon_conf_ge_050": 10,
+    "box_area_median_m2": 71.8,
+    "raster": "intermediates/new_orto_155/ortoPMBN2_47N.tif",
+    "tile_px": 17128050,
+    "zoom_200m_pohon": 29
+  },
+  "ortoPMBN3": {
+    "pohon": 399,
+    "footprint_ha": 48.15,
+    "kepadatan_per_ha": 8.3,
+    "conf_median": 0.633,
+    "conf_p10": 0.293,
+    "pohon_conf_ge_050": 264,
+    "box_area_median_m2": 45.9,
+    "raster": "intermediates/new_orto_155/ortoPMBN3_47N.tif",
+    "tile_px": 47250752,
+    "zoom_200m_pohon": 240
+  },
+  "_total": {
+    "pohon": 6495,
+    "footprint_ha": 140.9,
+    "kepadatan_per_ha": 46.1
+  }
+}

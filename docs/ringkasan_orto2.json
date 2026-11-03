@@ -1,0 +1,19 @@
+{
+  "ortoPMBN_ORTO2": {
+    "pohon": 8040,
+    "footprint_ha": 90.21,
+    "kepadatan_per_ha": 89.1,
+    "conf_median": 0.704,
+    "conf_p10": 0.411,
+    "pohon_conf_ge_050": 6784,
+    "box_area_median_m2": 81.2,
+    "raster": "intermediates/new_pmbn2_155/PMBN_ORTO2.tif",
+    "tile_px": 282971816,
+    "zoom_200m_pohon": 523
+  },
+  "_total": {
+    "pohon": 8040,
+    "footprint_ha": 90.2,
+    "kepadatan_per_ha": 89.1
+  }
+}

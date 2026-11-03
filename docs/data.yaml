@@ -1,0 +1,5 @@
+path: yolo_oilpalm/dataset
+train: images/train
+val: images/val
+names:
+  0: oil_palm

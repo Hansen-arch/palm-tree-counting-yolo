@@ -1,0 +1,19 @@
+{
+  "mosaik47n": {
+    "pohon": 24966,
+    "footprint_ha": 310.82,
+    "kepadatan_per_ha": 80.3,
+    "conf_median": 0.697,
+    "conf_p10": 0.383,
+    "pohon_conf_ge_050": 20385,
+    "box_area_median_m2": 78.9,
+    "raster": "intermediates/merge_155/mosaik_155.tif",
+    "tile_px": 781830401,
+    "zoom_200m_pohon": 559
+  },
+  "_total": {
+    "pohon": 24966,
+    "footprint_ha": 310.8,
+    "kepadatan_per_ha": 80.3
+  }
+}
