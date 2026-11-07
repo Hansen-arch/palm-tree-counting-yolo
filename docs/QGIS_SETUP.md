@@ -1,4 +1,4 @@
-# QGIS Deepness & Whitebox Workflows — conda `geo` environment
+# QGIS Deepness & Whitebox Workflows, conda `geo` environment
 
 ## Environment setup
 
@@ -53,7 +53,7 @@ versions installed above.
 
 - `onnxruntime-gpu` requires a CUDA-capable GPU and the right driver/cuDNN
   stack. In this env `ort.get_available_providers()` currently returns
-  `CUDAExecutionProvider` / `CPUExecutionProvider` / … — confirm the GPU
+  `CUDAExecutionProvider` / `CPUExecutionProvider` / …, confirm the GPU
   provider is actually usable on your hardware before relying on GPU inference.
 - `numpy` was downgraded to `<2` (`1.26.4`) because the pinned
   `opencv-python-headless<=4.9.0.80` and `onnxruntime-gpu<=1.17.0` wheels are

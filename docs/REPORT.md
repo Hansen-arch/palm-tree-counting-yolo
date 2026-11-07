@@ -1,4 +1,4 @@
-# Palm canopy digitising — ORTO271026.tif
+# Palm canopy digitising, ORTO271026.tif
 
 ## 1. What the ortho actually contains
 
@@ -11,7 +11,7 @@
 | extent | 2,902 × 2,586 m ≈ 749 ha of raster box |
 | CRS | WGS 84 / UTM zone 48N (EPSG:32648) |
 | bands | 1 Red, 2 Green, 3 Blue, 4 Alpha (all `Byte`) |
-| elevation | **none** — no Z band, no elevation metadata |
+| elevation | **none**, no Z band, no elevation metadata |
 
 The alpha band shows the flown footprint is 138.1 ha (irregular, follows the
 planting blocks and roads).
@@ -33,15 +33,15 @@ Result of `palm_canopy_digitasi.py` on the whole orthophoto:
 
 ### How it was digitised
 
-1. **Crown response** — a crown is the brightest, most yellow-green,
+1. **Crown response**, a crown is the brightest, most yellow-green,
    most frond-textured thing in a block, and it sits darker than the bare
    ground and grass next to it. Response = excess green `g − mean(r,b)`, gated
    by local variance *and* by a positive dark response (background − local
    brightness, DoG 9 m vs 1 m). Grass is as green as a frond but has no local
    contrast, so the dark gate is what rejects it.
-2. **Crown mask** — response > 12 (excess-green units), morphologically cleaned,
+2. **Crown mask**, response > 12 (excess-green units), morphologically cleaned,
    clipped to the alpha footprint.
-3. **Palm centres** — seeds are per-crown maxima of the smoothed response
+3. **Palm centres**, seeds are per-crown maxima of the smoothed response
    (0.5 m smoothing, 2.4 m non-maximum window), deliberately over-seeded.
    Every seed is then **settled onto the response-weighted centroid of the
    crown pixels within 4.2 m**, iterated 5 times (mean movement 0.76 → 0.09 m).
@@ -49,17 +49,17 @@ Result of `palm_canopy_digitasi.py` on the whole orthophoto:
    peak sits wherever the mask happens to be thickest, whereas the weighted
    centroid sits on the palm. Seeds that collapse onto the same crown are then
    thinned to 4.2 m, keeping the one carrying more crown response.
-4. **Crown-under-point check** — for every centre, how much of the 2.5 m disc
+4. **Crown-under-point check**, for every centre, how much of the 2.5 m disc
    around it is crown (`crown_frac`) and how thick the crown is at the point
    (`centre_dt`, metres). A point on empty ground fails both; a palm passes
    both. Defaults drop `crown_frac < 0.20` or `centre_dt < 0.6 m`, which removed
    2,896 of 16,879 centres (17 %).
-5. **Crown polygons** — every mask pixel is assigned to its nearest centre
+5. **Crown polygons**, every mask pixel is assigned to its nearest centre
    (Voronoi delineation, capped at 4.5 m radius), dissolved per palm, then
    simplified at 0.25 m to remove the raster staircase. The stored point is the
    crown's own weighted centroid.
 
-### Accuracy — read this before quoting the numbers
+### Accuracy, read this before quoting the numbers
 
 * **Centring is measured, not assumed**: mean offset 0.16 m between the point
   and its crown's centroid, p90 0.52 m, and 98.4 % of points fall on crown
@@ -72,8 +72,8 @@ Result of `palm_canopy_digitasi.py` on the whole orthophoto:
   stricter cut (`--min-crown-frac 0.35 --min-dt-centre 0.9`, 84/ha) is available
   if precision matters more than count.
 * **A frond-spoke score was tried and rejected as a filter.** It scores the
-  angular variation of brightness at 2–3 m from each point — palms swing, flat
-  ground does not — but its absolute level follows the lighting of each block,
+  angular variation of brightness at 2–3 m from each point, palms swing, flat
+  ground does not, but its absolute level follows the lighting of each block,
   and once normalised against the local background it flags real palms in dense
   rows (the background there is crowns). It is kept as a CSV column only.
 * **Recall is still the weak side in the densest rows.** Touching crowns with no
@@ -83,16 +83,16 @@ Result of `palm_canopy_digitasi.py` on the whole orthophoto:
   crown mask, not on how crowns are split.
 * Everything is in the vector outputs, so a missed or merged palm can be added
   or split in QGIS without re-running.
-* `output/qa_overlay.png` is whole-block scale (a 5 m crown is one pixel) — use
+* `output/qa_overlay.png` is whole-block scale (a 5 m crown is one pixel), use
   `--crop ... --tune` for a readable check, or render the CSV over the ortho as
   in `qa_centres_dense.jpg`.
 
-## 3. DTM — not possible from these files, scaffolding provided
+## 3. DTM, not possible from these files, scaffolding provided
 
 An ortho GeoTIFF holds only visible bands. There is **no elevation data in the
 project**: `ORTO271026.tif`, `PMBN_ORTO1.tif` and `PMBN_ORTO2.tif` are all
 4-band RGB + alpha orthophotos, and no DSM/point cloud/DTM file exists next to
-them. A DTM therefore cannot be derived from the ortho itself — elevation has
+them. A DTM therefore cannot be derived from the ortho itself, elevation has
 to come from the drone flight (point cloud / DSM export), a LiDAR survey, or a
 public DEM.
 
@@ -120,7 +120,7 @@ The DTM is reprojected/resampled onto the ortho grid and added as band 5
 
 `PMBN_ORTO2.tif` is tagged **WGS 84 / UTM zone 48S (EPSG:32748)** with false
 northing 10,000,000, but its coordinates (northing ≈ 10,036,343) resolve to
-**0°21′ N** — north of the equator, i.e. zone **48N**, the same zone as
+**0°21′ N**, north of the equator, i.e. zone **48N**, the same zone as
 `ORTO271026.tif`. As tagged, the file sits in the wrong hemisphere. Set its CRS
 to EPSG:32648 before using it with the other layers.
 

@@ -1,4 +1,4 @@
-# yolov26 / YOLO palm detection — separate folder
+# yolov26 / YOLO palm detection, separate folder
 
 A YOLO pipeline for detecting oil palm trees, following the notebook recipe from
 <https://github.com/mwahyur46/oilpalm-tree-detection-yolov26>
@@ -56,7 +56,7 @@ python3 predict.py --weights runs/oilpalm/weights/best.pt \
 | orthophoto | GSD | size | CRS | notes |
 |---|---|---|---|---|
 | `ORTO271026.tif` | 0.155 m | 18,708 x 16,672 | 32648 | label source |
-| `PMBN_ORTO1.tif` | 0.099 m | 8,756 x 16,684 | 32648 | — |
+| `PMBN_ORTO1.tif` | 0.099 m | 8,756 x 16,684 | 32648 |, |
 | `PMBN_ORTO2.tif` | 0.071 m | 28,048 x 47,664 | written as **32748** | actually 48N -> `--assume-srs EPSG:32648` |
 
 Notebook cell order: dependency check -> Drive mount -> GSD/CRS check ->
@@ -67,7 +67,7 @@ orthophotos -> summary + zip -> visual QA.
 (99 m of ground). On PMBN_ORTO2 (0.071 m) a 640 px tile covers only 46 m, so
 trees appear 2x larger. `predict.py --target-gsd 0.155138` reads a 1,389 px
 window and shrinks it to 640 px, so tree scale is identical across all three
-orthophotos — and the ORTO2 tile count drops from ~3,300 to ~735.
+orthophotos, and the ORTO2 tile count drops from ~3,300 to ~735.
 
 Maximum tile counts (before empty tiles outside the footprint are dropped):
 ORTO271026 ~810, PMBN_ORTO1 ~153, PMBN_ORTO2 ~735.
@@ -84,7 +84,7 @@ There is no public labelled dataset for this block, and Roboflow would require
 manual annotation. The existing digitising (`output/palm_crowns.gpkg`, 13,983
 polygons) provides free bounding boxes. These are *pseudo-labels*: the model
 will imitate that digitising, including its errors, so this is not independent
-proof — but it is far faster than per-tile YOLO annotation as data grows, and it
+proof, but it is far faster than per-tile YOLO annotation as data grows, and it
 can be used to check other blocks (PMBN_ORTO1/2) with a consistent appearance.
 
 The most honest way to use it: train the model, then compare its output against
@@ -97,7 +97,7 @@ the digitising on blocks that were never used for training.
   dataset is already built in `dataset/` (169 train / 34 val), so `train.py` can
   be used directly.
 * The box count is slightly higher than the crown count (13,983) because crowns
-  cut by a tile edge are recorded on both tiles with clipped boxes — which is
+  cut by a tile edge are recorded on both tiles with clipped boxes, which is
   actually good for training, so the model recognises half trees at tile edges.
 * `train.py --epochs 5 --imgsz 512 --batch 2 --device cpu` only proves the
   pipeline runs; 13,983 trees need a GPU (a Colab T4 is enough, as in the

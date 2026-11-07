@@ -1,4 +1,4 @@
-# Palm Tree Counting — YOLOv8 + Orthomosaic GIS Pipeline
+# Palm Tree Counting, YOLOv8 + Orthomosaic GIS Pipeline
 
 A complete pipeline for counting oil palm trees from aerial orthophotos: imagery
 is prepared and merged, trees are detected with a YOLOv8 detector running on a
@@ -15,7 +15,7 @@ orthophotos across UTM 47N/48S, 310+ hectares), not from sample data.
 | Area | Valid area | Trees | Density | Median conf |
 |---|---|---|---|---|
 | Mosaic of 4 orthos (47N) | 310.8 ha | 24,966 | 80.3 /ha | 0.697 |
-| ORTO 47N (run as its own file) | 138.1 ha | 12,864 | 93.1 /ha | — |
+| ORTO 47N (run as its own file) | 138.1 ha | 12,864 | 93.1 /ha |, |
 | PMBN1 47N | 63.5 ha | 6,008 | 94.6 /ha | 0.755 |
 | PMBN3 47N | 48.2 ha | 399 | 8.3 /ha | 0.633 |
 | PMBN ORTO2 (UTM 48S) | 90.2 ha | 8,040 | 89.1 /ha | 0.704 |
